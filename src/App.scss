@@ -1,0 +1,23 @@
+@import-normalize;
+
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&family=PT+Serif:wght@700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: "PT Serif", serif;
+}

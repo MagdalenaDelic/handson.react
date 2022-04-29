@@ -1,0 +1,33 @@
+.Testimonial {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &-Figure {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  &-Img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &-Content {
+    padding-left: 120px;
+  }
+
+  &-Text {
+    font-size: 30px;
+    line-height: 180%;
+    color: #696969;
+  }
+
+  &-Quotation {
+    font-size: 48px;
+  }
+}
