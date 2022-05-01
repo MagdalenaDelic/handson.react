@@ -1,10 +1,10 @@
 import React from "react";
 import "./Testimonial.scss";
-
 import TestimonialImg from "../../assets/images/Images/testimonial.jpg";
+
 const Testimonial = () => {
   return (
-    <div className="Testimonial">
+    <div className="Testimonial ">
       <figure className="Testimonial-Figure">
         <img
           src={TestimonialImg}

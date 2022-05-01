@@ -23,7 +23,8 @@ const Home = () => {
           title={"Open new Possibilities"}
           actionText={"Learn Something new"}
           buttonText={"More Courses"}
-          isHeadingVisible={"false"}
+          buttonDestination={"/Courses"}
+          // isHeadingVisible={"false"}
         >
           <Grid modifiers={["primary"]}>
             <CourseCard
@@ -52,7 +53,7 @@ const Home = () => {
             />
           </Grid>
         </Section>
-        <Section isHeadingVisible={false} modifiers={["Testimonials"]}>
+        <Section isHeadingVisible={false} modifiers={["testimonials"]}>
           <Testimonial />
         </Section>
       </Main>

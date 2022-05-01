@@ -1,12 +1,14 @@
 import React from "react";
 import Button from "../Button/Button";
 import "./Section.scss";
+import "./Section.scss";
 import { Link } from "react-router-dom";
 
 const Section = ({
   modifiers,
   actionText,
   title,
+  buttonDestination,
   buttonText,
   isHeadingVisible = true,
   children,
@@ -31,7 +33,7 @@ const Section = ({
           <div className="Section-Heading">
             {title && <h2 className="Section-Title">{title}</h2>}
             {buttonText && (
-              <Link to="/Courses">
+              <Link to={buttonDestination}>
                 <Button modifiers={["heading", "outline"]}>{buttonText}</Button>
               </Link>
             )}

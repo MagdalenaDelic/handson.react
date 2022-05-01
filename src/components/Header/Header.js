@@ -2,7 +2,7 @@ import React from "react";
 import "./Header.scss";
 import LogoImg from "../../assets/images/Images/logo.svg";
 import Button from "../Button/Button";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = ({ modifiers }) => {
   const modifierClasses = {
@@ -36,9 +36,14 @@ const Header = ({ modifiers }) => {
         </svg>
 
         <nav className="Header-Nav">
-          <Link to="/Courses" className="Header-NavLink">
+          <NavLink
+            to="/Courses"
+            className={({ isActive }) =>
+              isActive ? "Header-active" : "Header-NavLink "
+            }
+          >
             Courses
-          </Link>
+          </NavLink>
           <div className="Header-NavButton ">
             <Button modifiers={["nav"]}>Sign In</Button>
           </div>

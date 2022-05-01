@@ -2,6 +2,7 @@ import React from "react";
 import "./Landing.scss";
 import LandingImg from "../../assets/images/Images/landing.jpg";
 import Button from "../Button/Button";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
   return (
@@ -22,7 +23,9 @@ const Landing = () => {
             with knowledge-based lessons from IT practice.
           </p>
 
-          <Button modifiers={[`landing`]}>Explore Courses</Button>
+          <Link to="/Courses">
+            <Button modifiers={[`landing`]}>Explore Courses</Button>
+          </Link>
         </div>
       </div>
     </div>

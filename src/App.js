@@ -1,12 +1,14 @@
 import "./App.scss";
 import Home from "./pages/Home/Home";
-import { Route, Routes } from "react-router-dom";
+import { Route, Router, Routes } from "react-router-dom";
 import Courses from "./pages/Courses/Courses";
 import Course from "./pages/Course/Course";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <>
+      <ScrollToTop />
       {/* <Home /> */}
       <Routes>
         <Route path="/" element={<Home />} />

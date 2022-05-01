@@ -1,8 +1,10 @@
+@import "../../theme.scss";
+
 .Landing {
   height: 100vh;
   position: relative;
 
-  @media (min-width: 375px) {
+  @media ($mobileLarge) {
     height: 100vh;
     position: relative;
   }
@@ -25,7 +27,8 @@
     height: 100%;
     left: 0;
     position: absolute;
-    background: #bf3939ef;
+    background: $colorPrimary;
+    opacity: 90%;
   }
 
   &-OverlaySecondary {
@@ -33,7 +36,8 @@
     height: 100%;
     right: 0;
     position: absolute;
-    background: #000000ad;
+    background: $colorBlack;
+    opacity: 65%;
   }
 
   &-Content {
@@ -45,25 +49,25 @@
     display: flex;
     align-items: center;
 
-    @media (min-width: 768px) {
+    @media ($tablet) {
       top: 20px;
     }
-    @media (min-width: 980px) {
+    @media ($tabletLarge) {
       top: 20px;
     }
   }
 
   &-Title {
-    color: #fff;
+    color: $colorSecondary;
     font-size: 36px;
     margin-bottom: 24px;
     width: 300px;
 
-    @media (min-width: 768px) {
+    @media ($tablet) {
       font-size: 40px;
       width: 450px;
     }
-    @media (min-width: 980px) {
+    @media ($tabletLarge) {
       font-size: 45px;
       width: 500px;
     }
@@ -74,20 +78,20 @@
   }
 
   &-Subtitle {
-    color: #fff;
+    color: $colorSecondary;
     font-size: 16px;
     margin-bottom: 48px;
     width: 250px;
 
-    @media (min-width: 768px) {
+    @media ($tablet) {
       font-size: 20px;
       width: 400px;
     }
-    @media (min-width: 980px) {
+    @media ($tabletLarge) {
       font-size: 24px;
       width: 500px;
     }
-    @media (min-width: 1024px) {
+    @media ($desktop) {
       font-size: 24px;
       width: 500px;
     }

@@ -1,3 +1,5 @@
+@import "../../theme.scss";
+
 .Course {
   &:hover {
     .Course-Figure {
@@ -9,7 +11,7 @@
     }
 
     .Course-Title {
-      color: #bf3939;
+      color: $colorPrimary;
     }
   }
 
@@ -21,23 +23,23 @@
     margin-bottom: 16px;
     transition: all 0.3s;
 
-    @media (min-width: 375px) {
+    @media ($mobileLarge) {
       height: 275px;
     }
 
-    @media (min-width: 481px) {
+    @media ($tabletSmall) {
       height: 200px;
     }
 
-    @media (min-width: 768px) {
+    @media ($tablet) {
       height: 275px;
     }
 
-    @media (min-width: 1024px) {
+    @media ($desktop) {
       height: 230px;
     }
 
-    @media (min-width: 1300px) {
+    @media ($desktopLarge) {
       height: 255px;
     }
   }
@@ -52,7 +54,7 @@
   &-Title {
     font-size: 20px;
     font-weight: 500;
-    color: #333333;
+    color: $colorTextPrimary;
     text-align: center;
     margin-bottom: 8px;
     transition: color 0.3s ease-out;
@@ -61,7 +63,7 @@
   &-Subtitle {
     font-size: 16px;
     font-weight: 300;
-    color: #696969;
+    color: $colorTextSecondary;
     text-align: center;
   }
 }

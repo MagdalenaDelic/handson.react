@@ -12,7 +12,12 @@ const Course = () => {
     <>
       <Header modifiers={["secondary"]} />
       <Main>
-        <Section actionText={"102+ Minutes"} title={"All Courses"}>
+        <Section
+          actionText={"102+ Minutes"}
+          title={"All Courses"}
+          buttonText={"Back"}
+          buttonDestination={-1}
+        >
           <Grid modifiers={["secondary"]}>
             <CourseCard imgSrc={LectureImg1} />
             <CourseContent

@@ -1,3 +1,5 @@
+@import "../../theme.scss";
+
 .Header {
   position: absolute;
   top: 0;
@@ -7,7 +9,7 @@
   padding: 24px; /*-top/down, left/right*/
 
   &-Header-Secondary {
-    background-color: #333333;
+    background-color: $colorTextPrimary;
     position: initial;
   }
 
@@ -15,12 +17,12 @@
     width: 30px;
     height: auto;
 
-    @media (min-width: 1240px) {
+    @media ($desktop) {
       display: none;
     }
   }
   path {
-    fill: #ffffff;
+    fill: $colorSecondary;
   }
 
   &-Inner {
@@ -28,13 +30,13 @@
     justify-content: space-between;
     align-items: center;
 
-    @media (min-width: 1240px) {
+    @media ($desktop) {
       width: 900px;
       margin: 0 auto;
       padding: 32px 0px;
     }
 
-    @media (min-width: 1300px) {
+    @media ($desktopLarge) {
       width: 1260px;
     }
   }
@@ -42,13 +44,13 @@
   &-Nav {
     display: none;
 
-    @media (min-width: 1240px) {
+    @media ($desktop) {
       display: block;
     }
   }
 
   &-NavLink {
-    color: #ffffff;
+    color: $colorSecondary;
     letter-spacing: 1px;
     margin-right: 48px;
   }
@@ -63,7 +65,15 @@
   }
 
   &_Secondary {
-    background-color: #333333;
+    background-color: $colorTextPrimary;
     position: initial;
+  }
+
+  &-active {
+    color: $colorSecondary;
+    letter-spacing: 1px;
+    margin-right: 48px;
+    text-decoration: underline;
+    text-underline-offset: 5px;
   }
 }
