@@ -1,28 +1,29 @@
-@import "../../theme.scss";
+import styled from "styled-components";
+import { brakepoints } from "../style/theme";
 
-.Grid {
+export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   row-gap: 48px;
 
-  @media ($tabletSmall) {
+  @media (${brakepoints.tabletSmall}) {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 32px;
   }
 
-  @media ($desktop) {
+  @media (${brakepoints.desktop}) {
     grid-template-columns: repeat(3, 1fr);
     column-gap: 48px;
   }
 
-  @media ($desktopLarge) {
+  @media (${brakepoints.desktopLarge}) {
     grid-template-columns: repeat(4, 1fr);
   }
 
   &_Secondary {
-    @media ($desktop) {
+    @media (${brakepoints.desktop}) {
       grid-template-columns: repeat(2, 1fr);
       column-gap: 48px;
     }
   }
-}
+`;

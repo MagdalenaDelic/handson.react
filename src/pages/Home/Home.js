@@ -1,5 +1,4 @@
 import React from "react";
-import Grid from "../../components/Grid/Grid";
 import Header from "../../components/Header/Header";
 import Landing from "../../components/Landing/Landing";
 import Main from "../../components/Main/Main";
@@ -10,6 +9,7 @@ import LectureImg3 from "../../assets/images/Images/lecture-3.jpg";
 import LectureImg4 from "../../assets/images/Images/lecture-4.jpg";
 import CourseCard from "../../components/CourseCard/CourseCard";
 import Testimonial from "../../components/Testimonial/Testimonial";
+import { Grid } from "../../lib/style/generalStyles";
 
 const Home = () => {
   return (
@@ -26,7 +26,7 @@ const Home = () => {
           buttonDestination={"/Courses"}
           // isHeadingVisible={"false"}
         >
-          <Grid modifiers={["primary"]}>
+          <Grid>
             <CourseCard
               imgSrc={LectureImg1}
               imgAlt={"Introduction"}

@@ -2,15 +2,16 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import Main from "../../components/Main/Main";
 import Section from "../../components/Section/Section";
-import Grid from "../../components/Grid/Grid";
+
 import CourseContent from "../../components/CourseContent/CourseContent";
 import CourseCard from "../../components/CourseCard/CourseCard";
 import LectureImg1 from "../../assets/images/Images/lecture-1.jpg";
+import { Grid } from "../../lib/style/generalStyles";
 
 const Course = () => {
   return (
     <>
-      <Header modifiers={["secondary"]} />
+      <Header isSecondary={true} />
       <Main>
         <Section
           actionText={"102+ Minutes"}
@@ -18,7 +19,7 @@ const Course = () => {
           buttonText={"Back"}
           buttonDestination={-1}
         >
-          <Grid modifiers={["secondary"]}>
+          <Grid>
             <CourseCard imgSrc={LectureImg1} />
             <CourseContent
               content={

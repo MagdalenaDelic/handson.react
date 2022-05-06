@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import Main from "../../components/Main/Main";
 import Section from "../../components/Section/Section";
-import Grid from "../../components/Grid/Grid";
+
 import CourseCard from "../../components/CourseCard/CourseCard";
 import LectureImg1 from "../../assets/images/Images/lecture-1.jpg";
 import LectureImg2 from "../../assets/images/Images/lecture-2.jpg";
@@ -12,14 +12,15 @@ import LectureImg5 from "../../assets/images/Images/lecture-5.jpg";
 import LectureImg6 from "../../assets/images/Images/lecture-6.jpg";
 import LectureImg7 from "../../assets/images/Images/lecture-7.jpg";
 import LectureImg8 from "../../assets/images/Images/lecture-8.jpg";
+import { Grid } from "../../lib/style/generalStyles";
 
 const Courses = () => {
   return (
     <>
-      <Header modifiers={["secondary"]} />
+      <Header isSecondary={true} />
       <Main>
         <Section title={"All Courses"}>
-          <Grid modifiers={["primary"]}>
+          <Grid>
             <CourseCard
               imgSrc={LectureImg1}
               imgAlt={"Introduction"}
