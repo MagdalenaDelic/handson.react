@@ -2,7 +2,6 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import Main from "../../components/Main/Main";
 import Section from "../../components/Section/Section";
-
 import CourseCard from "../../components/CourseCard/CourseCard";
 import LectureImg1 from "../../assets/images/Images/lecture-1.jpg";
 import LectureImg2 from "../../assets/images/Images/lecture-2.jpg";

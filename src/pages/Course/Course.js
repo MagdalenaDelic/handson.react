@@ -2,35 +2,52 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import Main from "../../components/Main/Main";
 import Section from "../../components/Section/Section";
-
 import CourseContent from "../../components/CourseContent/CourseContent";
 import CourseCard from "../../components/CourseCard/CourseCard";
-import LectureImg1 from "../../assets/images/Images/lecture-1.jpg";
-import { Grid } from "../../lib/style/generalStyles";
+// import LectureImg1 from "../../assets/images/Images/lecture-1.jpg";
+// import { Grid } from "../../lib/style/generalStyles";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import coursesMock from "../../lib/mock/courses";
 
 const Course = () => {
+  const { id } = useParams();
+  const [courses, setCourses] = useState(null);
+  const [course, setCourse] = useState(null);
+
+  useEffect(() => {
+    setCourses(coursesMock);
+  }, []);
+
+  useEffect(() => {
+    courses &&
+      setCourse(...courses.filter((course) => course.id === parseInt(id)));
+  }, [courses, id]);
+
   return (
     <>
       <Header isSecondary={true} />
-      <Main>
-        <Section
-          actionText={"102+ Minutes"}
-          title={"All Courses"}
-          buttonText={"Back"}
-          buttonDestination={-1}
-        >
-          <Grid>
-            <CourseCard imgSrc={LectureImg1} />
-            <CourseContent
-              content={
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam malesuada orci vitae justo dignissim euismod. Cras dapibus ullamcorper augue, vel viverra eros fringilla et. Donec in mauris egestas, finibus sapien a, consectetur elit. Proin ornare arcu nec nisi fermentum egestas. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse potenti. Duis eu porttitor purus. Praesent eu neque risus."
-              }
+     
+        {course && 
+          <Section
+            title={course.title}
+            actionText={course.subtitle}
+            buttonText={"Back"}
+            buttonPath={-1}
+          >
+            <CourseCard
+              imgSrc={course.imgSrc}
+              imgAlt={course.imgAlt}
+              title={"1. Introduction"}
+              subtitle={"60 Minutes"}
             />
-          </Grid>
-        </Section>
-      </Main>
+            <CourseText text={course.text} />
+          </Section>
+        )};
+      
     </>
   );
+
 };
 
 export default Course;
