@@ -2,7 +2,7 @@ import React from "react";
 import "./Header.scss";
 import LogoImg from "../../assets/images/Images/logo.svg";
 import Button from "../Button/Button";
-import { Link, NavLink } from "react-router-dom";
+// import { Link, NavLink } from "react-router-dom";
 import {
   Header as HeaderWrapper,
   HeaderInner,
@@ -14,7 +14,7 @@ import {
   NavButtonLink,
 } from "./HeaderStyle";
 
-const Header = ({ isSecondary }) => {
+const Header = ({ isSecondary, isActive }) => {
   return (
     <HeaderWrapper isSecondary={isSecondary}>
       <HeaderInner>
@@ -23,7 +23,9 @@ const Header = ({ isSecondary }) => {
         </LogoLink>
         <Hamburger />
         <Nav>
-          <HeaderNavLink to="/Courses"> Courses</HeaderNavLink>
+          <HeaderNavLink to="/Courses" isActive={isActive}>
+            Courses
+          </HeaderNavLink>
           <NavButtonLink to="/">
             <Button modifiers={["nav"]}>Sign In</Button>
           </NavButtonLink>

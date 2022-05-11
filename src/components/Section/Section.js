@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "../Button/Button";
 import "./Section.scss";
-import "./Section.scss";
 import { Link } from "react-router-dom";
 
 const Section = ({

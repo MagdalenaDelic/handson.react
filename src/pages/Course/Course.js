@@ -27,27 +27,25 @@ const Course = () => {
   return (
     <>
       <Header isSecondary={true} />
-     
-        {course && 
-          <Section
+      {course && (
+        <Section
+          title={course.title}
+          actionText={course.subtitle}
+          buttonText={"Back"}
+          buttonDestination={-1}
+        >
+          <CourseCard
+            imgSrc={course.imgSrc}
+            imgAlt={course.imgAlt}
             title={course.title}
-            actionText={course.subtitle}
-            buttonText={"Back"}
-            buttonPath={-1}
-          >
-            <CourseCard
-              imgSrc={course.imgSrc}
-              imgAlt={course.imgAlt}
-              title={"1. Introduction"}
-              subtitle={"60 Minutes"}
-            />
-            <CourseText text={course.text} />
-          </Section>
-        )};
-      
+            subtitle={course.subtitle}
+          />
+          <CourseContent content={course.text} />
+        </Section>
+      )}
+      ;
     </>
   );
-
 };
 
 export default Course;

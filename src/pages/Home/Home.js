@@ -8,19 +8,18 @@ import Header from "../../components/Header/Header";
 import Landing from "../../components/Landing/Landing";
 import Main from "../../components/Main/Main";
 import Section from "../../components/Section/Section";
-// import LectureImg1 from "../../assets/images/Images/lecture-1.jpg";
-// import LectureImg2 from "../../assets/images/Images/lecture-2.jpg";
-// import LectureImg3 from "../../assets/images/Images/lecture-3.jpg";
-// import LectureImg4 from "../../assets/images/Images/lecture-4.jpg";
+import Loader from "../../components/Loader/Loader";
 
 const Home = () => {
   const [courses, setCourses] = useState(null);
+  const [loader, setLoader] = useState(true);
   useEffect(() => {
     setTimeout(() => {
+      setLoader(false);
       setCourses(coursesMock);
     }, 1000);
   }, []);
-  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <>
       <Header />
@@ -28,27 +27,19 @@ const Home = () => {
         <section>
           <Landing />
         </section>
-        <Section
-          actionText={"Learn something new"}
-          title={"Open new posibilities"}
-          buttonText={"More courses"}
-          buttonPath={"/Courses"}
-        >
-          {courses && (
-            <Grid>
-              {courses
-                .filter((courses) => {
-                  if (searchTerm == "") {
-                    return courses;
-                  } else if (
-                    courses.title
-                      .toLowerCase()
-                      .includes(searchTerm.toLowerCase())
-                  ) {
-                    return courses;
-                  }
-                })
-                .map(
+
+        {loader == true ? (
+          <Loader />
+        ) : (
+          <Section
+            actionText={"Learn something new"}
+            title={"Open new posibilities"}
+            buttonText={"More courses"}
+            buttonDestination={"/Courses"}
+          >
+            {courses && (
+              <Grid>
+                {courses.map(
                   (course, index) =>
                     index <= 3 && (
                       <CourseCard
@@ -61,9 +52,10 @@ const Home = () => {
                       />
                     )
                 )}
-            </Grid>
-          )}
-        </Section>
+              </Grid>
+            )}
+          </Section>
+        )}
         <Section isHeadingVisible={"false"} modifiers={["testimonials"]}>
           <Testimonial />
         </Section>
