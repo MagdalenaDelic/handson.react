@@ -9,11 +9,13 @@ import CourseCard from "../../components/CourseCard/CourseCard";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import coursesMock from "../../lib/mock/courses";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 const Course = () => {
   const { id } = useParams();
   const [courses, setCourses] = useState(null);
   const [course, setCourse] = useState(null);
+  const [isSidebarOpened, setIsSidebarOpened] = useState(false);
 
   useEffect(() => {
     setCourses(coursesMock);
@@ -26,7 +28,11 @@ const Course = () => {
 
   return (
     <>
-      <Header isSecondary={true} />
+      <Header setIsSidebarOpened={setIsSidebarOpened} isSecondary />
+      <Sidebar
+        isSidebarOpened={isSidebarOpened}
+        setIsSidebarOpened={setIsSidebarOpened}
+      />
       {course && (
         <Section
           title={course.title}

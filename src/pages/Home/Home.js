@@ -9,10 +9,14 @@ import Landing from "../../components/Landing/Landing";
 import Main from "../../components/Main/Main";
 import Section from "../../components/Section/Section";
 import Loader from "../../components/Loader/Loader";
+import { SearchBar } from "../../components/Search/SearchStyle";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 const Home = () => {
   const [courses, setCourses] = useState(null);
   const [loader, setLoader] = useState(true);
+  const [search, setSearch] = useState("");
+  const [isSidebarOpened, setIsSidebarOpened] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       setLoader(false);
@@ -22,39 +26,68 @@ const Home = () => {
 
   return (
     <>
-      <Header />
+      <Header setIsSidebarOpened={setIsSidebarOpened} />
+      <Sidebar
+        isSidebarOpened={isSidebarOpened}
+        setIsSidebarOpened={setIsSidebarOpened}
+      />
+
       <Main>
         <section>
           <Landing />
         </section>
 
         {loader == true ? (
-          <Loader />
+          <>
+            <SearchBar placeholder="Search . . . " type="text" disabled />
+            <Loader />
+          </>
         ) : (
-          <Section
-            actionText={"Learn something new"}
-            title={"Open new posibilities"}
-            buttonText={"More courses"}
-            buttonDestination={"/Courses"}
-          >
-            {courses && (
-              <Grid>
-                {courses.map(
-                  (course, index) =>
-                    index <= 3 && (
-                      <CourseCard
-                        key={course.id}
-                        courseId={course.id}
-                        imgSrc={course.imgSrc}
-                        imgAlt={course.imgAlt}
-                        title={course.title}
-                        subtitle={course.subtitle}
-                      />
-                    )
-                )}
-              </Grid>
-            )}
-          </Section>
+          <>
+            <SearchBar
+              placeholder="Search . . . "
+              type="text"
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            />
+            <Section
+              actionText={"Learn something new"}
+              title={"Open new posibilities"}
+              buttonText={"More courses"}
+              buttonDestination={"/Courses"}
+            >
+              {courses && (
+                <Grid>
+                  {courses
+                    .filter((course) => {
+                      if (search === "") {
+                        return course;
+                      } else if (
+                        course.title
+                          .toLowerCase()
+                          .includes(search.toLowerCase())
+                      ) {
+                        return course;
+                      }
+                    })
+                    .map(
+                      (course, index) =>
+                        index <= 3 && (
+                          <CourseCard
+                            key={course.id}
+                            courseId={course.id}
+                            imgSrc={course.imgSrc}
+                            imgAlt={course.imgAlt}
+                            title={course.title}
+                            subtitle={course.subtitle}
+                          />
+                        )
+                    )}
+                </Grid>
+              )}
+            </Section>
+          </>
         )}
         <Section isHeadingVisible={"false"} modifiers={["testimonials"]}>
           <Testimonial />

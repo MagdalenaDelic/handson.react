@@ -1,7 +1,14 @@
 import React from "react";
 import Button from "../Button/Button";
 import "./Section.scss";
-import { Link } from "react-router-dom";
+import { NavButtonLink } from "../Header/HeaderStyle";
+
+import {
+  Section as SectionWrapper,
+  SectionInner,
+  SectionActionText,
+  SectionHeading,
+} from "./SectionStyle";
 
 const Section = ({
   modifiers,
@@ -25,22 +32,22 @@ const Section = ({
   }
 
   return (
-    <section className={sectionClass}>
-      <div className="Section-Inner">
-        {actionText && <span className="Section-ActionText">{actionText}</span>}
+    <SectionWrapper>
+      <SectionInner>
+        {actionText && <SectionActionText>{actionText}</SectionActionText>}
         {isHeadingVisible && (
-          <div className="Section-Heading">
+          <SectionHeading>
             {title && <h2 className="Section-Title">{title}</h2>}
             {buttonText && (
-              <Link to={buttonDestination}>
+              <NavButtonLink to={buttonDestination}>
                 <Button modifiers={["heading", "outline"]}>{buttonText}</Button>
-              </Link>
+              </NavButtonLink>
             )}
-          </div>
+          </SectionHeading>
         )}
         {children}
-      </div>
-    </section>
+      </SectionInner>
+    </SectionWrapper>
   );
 };
 

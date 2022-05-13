@@ -44,7 +44,7 @@ export const Hamburger = styled(HamburgerIcon)`
   height: auto;
 
   path {
-    fill: (${colors.bgPrimary});
+    fill: ${colors.bgPrimary};
   }
 
   @media (${brakepoints.desktop}) {
@@ -52,7 +52,9 @@ export const Hamburger = styled(HamburgerIcon)`
   }
 `;
 
-export const LogoLink = styled(Link)``;
+export const LogoLink = styled(Link)`
+  color: ${(p) => (p.to === "/" ? "red" : "green")};
+`;
 
 export const LogoImg = styled.img`
   width: 140 px;
@@ -69,7 +71,10 @@ export const Nav = styled.nav`
 export const HeaderNavLink = styled(NavLink)`
   color: ${colors.secondary};
   letter-spacing: 1px;
-  margin-right: 48px;
+
+  @media (${brakepoints.desktop}) {
+    margin-right: 48px;
+  }
 
   ${(props) =>
     props.isActive &&
@@ -80,8 +85,11 @@ export const HeaderNavLink = styled(NavLink)`
 `;
 
 export const NavButtonLink = styled(Link)`
-  margin-right: 24px;
   display: inline-block;
+
+  @media (${brakepoints.desktop}) {
+    margin-right: 24px;
+  }
 
   &:last-child {
     margin-right: 0;
