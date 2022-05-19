@@ -40,6 +40,7 @@ const Home = () => {
         {loader == true ? (
           <>
             <SearchBar placeholder="Search . . . " type="text" disabled />
+
             <Loader />
           </>
         ) : (

@@ -1,5 +1,11 @@
 import styled from "styled-components";
-import { brakepoints } from "../style/theme";
+import { brakepoints, colors, fonts } from "../style/theme";
+import {
+  Form as FormFormik,
+  Field as FieldFormik,
+  ErrorMessage as ErrorMessageFormik,
+} from "formik";
+import { css } from "styled-components";
 
 export const Grid = styled.div`
   display: grid;
@@ -26,4 +32,58 @@ export const Grid = styled.div`
       column-gap: 48px;
     }
   }
+`;
+export const Form = styled(FormFormik)`
+  @media (${brakepoints.tabletSmall}) {
+    width: 400px;
+
+    ${(props) =>
+      props.isCentered !== false &&
+      `
+            margin: 0 auto;
+        `}
+  }
+`;
+export const FormRow = styled.div`
+  margin-bottom: 32px;
+
+  &:last-child {
+    margin-bottom: 0px;
+  }
+`;
+
+const FieldStyle = css`
+  //samo pohranili unutar varijable
+  border: 1px solid ${colors.textSecondary};
+  border-radius: 6px;
+  width: 100%;
+  line-height: 50px;
+  height: 50px;
+  padding: 0 12px;
+  outline: none;
+  font-size: 14px;
+  font-family: ${fonts.primary};
+
+  &:focus {
+    border-color: ${colors.textPrimary};
+  }
+
+  @media (${brakepoints.desktop}) {
+    font-size: 16px;
+  }
+`;
+export const Field = styled(FieldFormik)`
+  ${FieldStyle}
+`;
+
+export const Select = styled.select`
+  ${FieldStyle}
+`;
+
+export const Option = styled.option``;
+
+export const ErrorMessage = styled(ErrorMessageFormik)`
+  font-size: 15px;
+  color: ${colors.primary};
+  padding-top: 8px;
 `;

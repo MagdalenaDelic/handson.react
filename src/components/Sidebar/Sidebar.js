@@ -14,6 +14,7 @@ const Sidebar = ({ isSidebarOpened, setIsSidebarOpened }) => {
       <XIcon onClick={() => setIsSidebarOpened(false)} />
       <UnorderedList>
         <CustomLink to="/Courses">Courses</CustomLink>
+        <CustomLink to="/Profile">Profile</CustomLink>
         <NavButtonLink to="/">
           <Button modifiers={["nav"]}>Sign In</Button>
         </NavButtonLink>

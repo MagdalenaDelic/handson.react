@@ -2,7 +2,6 @@ import React from "react";
 import "./Header.scss";
 import LogoImg from "../../assets/images/Images/logo.svg";
 import Button from "../Button/Button";
-import Hamburger2 from "../Hamburger/Hamburger";
 
 import {
   Header as HeaderWrapper,
@@ -11,7 +10,6 @@ import {
   LogoLink,
   LogoImg as LogoElement,
   Nav,
-  HeaderNavLink,
   NavButtonLink,
 } from "./HeaderStyle";
 import CustomLink from "../CustomLink/CustomLink";
@@ -25,12 +23,12 @@ const Header = ({ isSecondary, isActive, setIsSidebarOpened }) => {
         </LogoLink>
         <Hamburger onClick={() => setIsSidebarOpened(true)} />
         <Nav>
-          {/* <Hamburger2 /> */}
           <CustomLink to="/Courses">Courses</CustomLink>
-          <NavButtonLink to="/">
+          <CustomLink to="/Profile">Profile</CustomLink>
+          <NavButtonLink to="/LogIn">
             <Button modifiers={["nav"]}>Sign In</Button>
           </NavButtonLink>
-          <NavButtonLink to="/">
+          <NavButtonLink to="/Register">
             <Button modifiers={["nav", "secondary"]}>Registration</Button>
           </NavButtonLink>
         </Nav>

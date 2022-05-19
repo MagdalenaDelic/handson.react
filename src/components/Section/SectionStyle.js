@@ -67,3 +67,17 @@ export const SectionTitleH1 = styled.h1`
   ${TitleStyle}
   ${(props) => props.isCentered && `text-align: center; width:100%;`}
 `;
+const titleStyle = css`
+  color: ${colors.textPrimary};
+  font-size: 26px;
+  font-weight: 500;
+  margin-bottom: 32px;
+
+  @media (${brakepoints.tablet}) {
+    font-size: 32px;
+    margin-bottom: 0;
+  }
+  @media (${brakepoints.desktop}) {
+    font-size: 36px;
+  }
+`;

@@ -8,6 +8,8 @@ import {
   SectionInner,
   SectionActionText,
   SectionHeading,
+  SectionTitleH2,
+  SectionTitleH1,
 } from "./SectionStyle";
 
 const Section = ({
@@ -18,6 +20,8 @@ const Section = ({
   buttonText,
   isHeadingVisible = true,
   children,
+  isMainSection = false,
+  isCentered = false,
 }) => {
   const modifierClasses = {
     testimonials: "Section_testimonials",
@@ -37,7 +41,13 @@ const Section = ({
         {actionText && <SectionActionText>{actionText}</SectionActionText>}
         {isHeadingVisible && (
           <SectionHeading>
-            {title && <h2 className="Section-Title">{title}</h2>}
+            {title &&
+              (isMainSection ? (
+                <SectionTitleH1 isCentered={isCentered}>{title}</SectionTitleH1>
+              ) : (
+                <SectionTitleH2 isCentered={isCentered}>{title}</SectionTitleH2>
+              ))}
+            ;
             {buttonText && (
               <NavButtonLink to={buttonDestination}>
                 <Button modifiers={["heading", "outline"]}>{buttonText}</Button>

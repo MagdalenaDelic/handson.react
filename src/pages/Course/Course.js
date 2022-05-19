@@ -4,8 +4,6 @@ import Main from "../../components/Main/Main";
 import Section from "../../components/Section/Section";
 import CourseContent from "../../components/CourseContent/CourseContent";
 import CourseCard from "../../components/CourseCard/CourseCard";
-// import LectureImg1 from "../../assets/images/Images/lecture-1.jpg";
-// import { Grid } from "../../lib/style/generalStyles";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import coursesMock from "../../lib/mock/courses";
