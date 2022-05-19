@@ -33,6 +33,17 @@ export const Grid = styled.div`
     }
   }
 `;
+
+export const GridSecondary = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  row-gap: 48px;
+
+  @media (${brakepoints.desktopLarge}) {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 50px;
+  }
+`;
 export const Form = styled(FormFormik)`
   @media (${brakepoints.tabletSmall}) {
     width: 400px;
@@ -79,6 +90,11 @@ export const Field = styled(FieldFormik)`
 export const Select = styled.select`
   ${FieldStyle}
 `;
+export const Label = styled.div`
+  font-size: 15px;
+  color: ${colors.black};
+  padding-bottom: 8px;
+`;
 
 export const Option = styled.option``;
 
@@ -86,4 +102,22 @@ export const ErrorMessage = styled(ErrorMessageFormik)`
   font-size: 15px;
   color: ${colors.primary};
   padding-top: 8px;
+`;
+
+export const ProfileCard = styled.div`
+  background-color: ${colors.bgSecondary};
+
+  font-family: ${fonts.primary};
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  height: fit-content;
+`;
+export const ProfileCardTitle = styled.h3`
+  font-size: 18px;
+  margin-bottom: 15px;
+`;
+export const ProfileCardParagraph = styled.p`
+  line-height: 150%;
+  font-size: 16px;
 `;

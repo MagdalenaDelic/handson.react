@@ -35,7 +35,7 @@ const Landing = () => {
           </LandingSubtitle>
 
           <Link to="/Courses">
-            <Button modifiers={[`landing`]}>Explore Courses</Button>
+            <Button isLanding>Explore Courses</Button>
           </Link>
         </LandingContentInner>
       </LandingContent>

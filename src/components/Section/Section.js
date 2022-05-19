@@ -47,10 +47,12 @@ const Section = ({
               ) : (
                 <SectionTitleH2 isCentered={isCentered}>{title}</SectionTitleH2>
               ))}
-            ;
+
             {buttonText && (
               <NavButtonLink to={buttonDestination}>
-                <Button modifiers={["heading", "outline"]}>{buttonText}</Button>
+                <Button isHeading isOutline>
+                  {buttonText}
+                </Button>
               </NavButtonLink>
             )}
           </SectionHeading>

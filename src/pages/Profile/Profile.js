@@ -2,25 +2,36 @@ import Header from "../../components/Header/Header";
 import Section from "../../components/Section/Section";
 import { Formik } from "formik";
 import Button from "../../components/Button/Button";
-import { Grid } from "../../lib/style/generalStyles";
-import { useState } from "react";
-import { profileCard, profileCardParagraph } from "../Profile/ProfileStyle";
+import { GridSecondary } from "../../lib/style/generalStyles";
+import { useState, useEffect } from "react";
+// import { profileCard, profileCardParagraph } from "../Profile/ProfileStyle";
 import Sidebar from "../../components/Sidebar/Sidebar";
-
+import Loader from "../../components/Loader/Loader";
 import * as Yup from "yup";
 import {
   Form,
   FormRow,
   Field,
+  Label,
   FieldStyle,
   Select,
   Option,
   ErrorMessage,
+  ProfileCard,
+  ProfileCardParagraph,
+  ProfileCardTitle,
 } from "../../lib/style/generalStyles";
 
 const Profile = () => {
+  const [loader, setLoader] = useState(true);
   const [isSidebarOpened, setIsSidebarOpened] = useState(false);
   const [isToggled, setIsToggled] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoader(false);
+    }, 1000);
+  }, []);
 
   return (
     <>
@@ -29,230 +40,259 @@ const Profile = () => {
         isSidebarOpened={isSidebarOpened}
         setIsSidebarOpened={setIsSidebarOpened}
       />
-      <Section title={"Profile"} isMainSection>
-        <Grid>
-          <Formik
-            initialValues={{
-              firstName: "",
-              lastName: "",
-              email: "",
+      {loader == true ? (
+        <Loader></Loader>
+      ) : (
+        <Section title={"Profile"} isMainSection>
+          <Button isOutline isRight onClick={() => setIsToggled(!isToggled)}>
+            Edit
+          </Button>
 
-              githubUsername: "",
-              zepelinUsername: "",
-              activeFacultyYear: "",
-              isAdmin: false,
-            }}
-            validationSchema={Yup.object({
-              firstName: Yup.string().required("First Name is required"),
-              lastName: Yup.string().required("Last Name is required"),
-              email: Yup.string()
-                .email("Invalid email address")
-                .required("Email Name is required"),
+          <GridSecondary>
+            <Formik
+              initialValues={{
+                firstName: "Magdalena",
+                lastName: "Delić",
+                email: "magdalena.delic1@gmail.com",
+                githubUsername: "magdalena1",
+                zeplinUsername: "magdalena2",
+                activeFacultyYear: 2,
+                isAdmin: false,
+              }}
+              validationSchema={Yup.object({
+                firstName: Yup.string().required("First Name is required"),
+                lastName: Yup.string().required("Last Name is required"),
+                email: Yup.string()
+                  .email("Invalid email address")
+                  .required("Email Name is required"),
 
-              githubUsername: Yup.string().required(
-                "Github username is required"
-              ),
-              zepelinUsername: Yup.string().required(
-                "Zepelin username  is required"
-              ),
-              activeFacultyYear: Yup.string().required(
-                "Active Faculty Year Name is required"
-              ),
-            })}
-            onSubmit={(values, actions) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                actions.setSubmitting(false);
-                actions.resetForm({
-                  firstName: "",
-                  lastName: "",
-                  email: "",
+                githubUsername: Yup.string().required(
+                  "Github username is required"
+                ),
+                zeplinUsername: Yup.string().required(
+                  "Zeplin username  is required"
+                ),
+                activeFacultyYear: Yup.string().required(
+                  "Active Faculty Year Name is required"
+                ),
+              })}
+              onSubmit={(values, actions) => {
+                setTimeout(() => {
+                  alert(JSON.stringify(values, null, 2));
+                  actions.setSubmitting(false);
+                  actions.resetForm({
+                    firstName: "",
+                    lastName: "",
+                    email: "",
 
-                  githubUsername: "",
-                  zepelinUsername: "",
-                  activeFacultyYear: "",
-                  isAdmin: false,
-                });
-              }, 1000);
-            }}
-          >
-            {(formik) => (
-              <Form>
-                <FormRow>
-                  <Field
-                    type="text"
-                    name="firstName"
-                    placeholder="First name . . ."
-                    disabled={formik.isSubmitting}
-                    disabled={isToggled == false}
-                  />
-                  <ErrorMessage component={"div"} name="firstName" />
-                </FormRow>
-
-                <FormRow>
-                  <Field
-                    type="text"
-                    name="lastName"
-                    placeholder="Last name . . ."
-                    disabled={formik.isSubmitting}
-                    disabled={isToggled == false}
-                  />
-                  <ErrorMessage component={"div"} name="lastName" />
-                </FormRow>
-
-                <FormRow>
-                  <Field
-                    type="email"
-                    name="email"
-                    placeholder="Email name . . ."
-                    disabled={formik.isSubmitting}
-                    disabled={isToggled == false}
-                  />
-                  <ErrorMessage component={"div"} name="email" />
-                </FormRow>
-
-                <FormRow>
-                  <Field
-                    type="text"
-                    name="githubUsername"
-                    placeholder="Github Username . . ."
-                    disabled={formik.isSubmitting}
-                    disabled={isToggled == false}
-                  />
-                  <ErrorMessage component={"div"} name="githubUsername" />
-                </FormRow>
-
-                <FormRow>
-                  <Field
-                    type="text"
-                    name="zepelinUsername"
-                    placeholder="Zepelin Username . . ."
-                    disabled={formik.isSubmitting}
-                    disabled={isToggled == false}
-                  />
-                  <ErrorMessage component={"div"} name="zepelinUsername" />
-                </FormRow>
-
-                <FormRow>
-                  <Select
-                    id="activeFacultyYear"
-                    {...formik.getFieldProps("activeFacultyYear")}
-                    disabled={isToggled == false}
-                  >
-                    <Option value="" disabled hidden>
-                      Choose an Active faculty year
-                    </Option>
-                    <Option value="0">Not a student</Option>
-                    <Option value="1">1st faculty year</Option>
-                    <Option value="2">2nd faculty year</Option>
-                    <Option value="3">3rd faculty year</Option>
-                    <Option value="4">4th faculty year</Option>
-                    <Option value="5">5th faculty year</Option>
-                  </Select>
-                  <ErrorMessage component={"div"} name="activeFacultyYear" />
-                </FormRow>
-                {isToggled == false ? (
-                  <FormRow></FormRow>
-                ) : (
+                    githubUsername: "",
+                    zeplinUsername: "",
+                    activeFacultyYear: "",
+                    isAdmin: false,
+                  });
+                }, 1000);
+              }}
+            >
+              {(formik) => (
+                <Form>
                   <FormRow>
-                    <Button modifiers={["heading", "outline"]}>Update</Button>
+                    <Label>First name:</Label>
+                    <Field
+                      label="First Name"
+                      type="text"
+                      name="firstName"
+                      placeholder="First name . . ."
+                      disabled={formik.isSubmitting || isToggled == false}
+                    />
+                    <ErrorMessage component={"div"} name="firstName" />
                   </FormRow>
-                )}
-              </Form>
-            )}
-          </Formik>
-          <>
-            {isToggled == false ? (
-              <>
-                <profileCard>
-                  <profileCardParagraph>zatvoreno</profileCardParagraph>
-                </profileCard>
-              </>
-            ) : (
-              <Formik
-                initialValues={{
-                  oldPassword: "",
-                  password: "",
-                  passwordConfirmation: "",
-                }}
-                validationSchema={Yup.object({
-                  oldPassword: Yup.string()
-                    .min(8, "password must be at least 8 characters long")
-                    .required("Email Name is required"),
-                  password: Yup.string()
-                    .min(8, "password must be at least 8 characters long")
-                    .required("Email Name is required"),
-                  passwordConfirmation: Yup.string()
-                    .test(
-                      "password-match",
-                      "Password must match",
 
-                      function (value) {
-                        return this.parent.password === value;
-                      }
-                    )
-                    .required("Email Name is required"),
-                })}
-                onSubmit={(values, actions) => {
-                  setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    actions.setSubmitting(false);
-                    actions.resetForm({
-                      oldPassword: "",
+                  <FormRow>
+                    <Label>Last name:</Label>
+                    <Field
+                      type="text"
+                      name="lastName"
+                      placeholder="Last name . . ."
+                      disabled={formik.isSubmitting || isToggled == false}
+                    />
+                    <ErrorMessage component={"div"} name="lastName" />
+                  </FormRow>
 
-                      password: "",
-                      passwordConfirmation: "",
-                    });
-                  }, 1000);
-                }}
-              >
-                {(formik) => (
-                  <Form>
-                    <FormRow>
-                      <Field
-                        type="password"
-                        name="oldPassword"
-                        placeholder="Password . . ."
-                        disabled={formik.isSubmitting}
-                      />
-                      <ErrorMessage component={"div"} name="password" />
-                    </FormRow>
+                  <FormRow>
+                    <Label>E-mail:</Label>
+                    <Field
+                      type="email"
+                      name="email"
+                      placeholder="Email name . . ."
+                      disabled={formik.isSubmitting || isToggled == false}
+                    />
+                    <ErrorMessage component={"div"} name="email" />
+                  </FormRow>
 
-                    <FormRow>
-                      <Field
-                        type="password"
-                        name="password"
-                        placeholder="Password . . ."
-                        disabled={formik.isSubmitting}
-                      />
-                      <ErrorMessage component={"div"} name="password" />
-                    </FormRow>
+                  <FormRow>
+                    <Label>Github username:</Label>
+                    <Field
+                      type="text"
+                      name="githubUsername"
+                      placeholder="Github username . . ."
+                      disabled={formik.isSubmitting || isToggled == false}
+                    />
+                    <ErrorMessage component={"div"} name="githubUsername" />
+                  </FormRow>
 
+                  <FormRow>
+                    <Label>Zeplin username:</Label>
+                    <Field
+                      type="text"
+                      name="zeplinUsername"
+                      placeholder="Zeplin username . . ."
+                      disabled={formik.isSubmitting || isToggled == false}
+                    />
+                    <ErrorMessage component={"div"} name="zeplinUsername" />
+                  </FormRow>
+
+                  <FormRow>
+                    <Label>Active Faculty Year:</Label>
+                    <Select
+                      id="activeFacultyYear"
+                      {...formik.getFieldProps("activeFacultyYear")}
+                      disabled={isToggled == false}
+                    >
+                      <Option value="" disabled hidden>
+                        Choose an Active faculty year
+                      </Option>
+                      <Option value="0">Not a student</Option>
+                      <Option value="1">1st faculty year</Option>
+                      <Option value="2">2nd faculty year</Option>
+                      <Option value="3">3rd faculty year</Option>
+                      <Option value="4">4th faculty year</Option>
+                      <Option value="5">5th faculty year</Option>
+                    </Select>
+                    <ErrorMessage component={"div"} name="activeFacultyYear" />
+                  </FormRow>
+                  {isToggled == false ? (
+                    <FormRow></FormRow>
+                  ) : (
                     <FormRow>
-                      <Field
-                        type="password"
-                        name="passwordConfirmation"
-                        placeholder="Password confirmation. . ."
-                        disabled={formik.isSubmitting}
-                      />
-                      <ErrorMessage
-                        component={"div"}
-                        name="passwordConfirmation"
-                      />
-                    </FormRow>
-                    <FormRow>
-                      <Button modifiers={["heading", "outline"]}>
-                        Submitting
+                      <Button
+                        isOutline
+                        isHeading
+                        desabled={formik.isSubmitting}
+                      >
+                        {formik.isSubmitting ? "Processting . . ." : "Update"}
                       </Button>
                     </FormRow>
-                  </Form>
-                )}
-              </Formik>
-            )}
-          </>
-          <button onClick={() => setIsToggled(!isToggled)}>Toggle State</button>
-        </Grid>
-      </Section>
+                  )}
+                </Form>
+              )}
+            </Formik>
+            <>
+              {isToggled == false ? (
+                <ProfileCard>
+                  <ProfileCardTitle>Password reset</ProfileCardTitle>
+                  <ProfileCardParagraph>
+                    In oreder to reset password, click on Edit button.
+                  </ProfileCardParagraph>
+                </ProfileCard>
+              ) : (
+                <ProfileCard>
+                  <ProfileCardTitle>Password reset</ProfileCardTitle>
+                  <Formik
+                    initialValues={{
+                      oldPassword: "",
+                      newPassword: "",
+                      newPasswordConfirmation: "",
+                    }}
+                    validationSchema={Yup.object({
+                      oldPassword: Yup.string().required(
+                        "Password is required"
+                      ),
+                      newPassword: Yup.string()
+                        .min(8, "password must be at least 8 characters long")
+                        .required("New password is required"),
+                      newPasswordConfirmation: Yup.string()
+                        .test(
+                          "password-match",
+                          "Password must match",
+
+                          function (value) {
+                            return this.parent.password === value;
+                          }
+                        )
+                        .required("New password confirmation is required"),
+                    })}
+                    onSubmit={(values, actions) => {
+                      setTimeout(() => {
+                        alert(JSON.stringify(values, null, 2));
+                        actions.setSubmitting(false);
+                        actions.resetForm({
+                          oldPassword: "",
+                          newPasswordpassword: "",
+                          newPasswordConfirmation: "",
+                        });
+                      }, 1000);
+                    }}
+                  >
+                    {(formik) => (
+                      <Form>
+                        <FormRow>
+                          <Field
+                            type="password"
+                            name="oldPassword"
+                            placeholder="Old password . . ."
+                            disabled={formik.isSubmitting}
+                          />
+                          <ErrorMessage component={"div"} name="password" />
+                        </FormRow>
+
+                        <FormRow>
+                          <Field
+                            type="password"
+                            name="newPassword"
+                            placeholder="New password . . ."
+                            disabled={formik.isSubmitting}
+                          />
+                          <ErrorMessage component={"div"} name="password" />
+                        </FormRow>
+
+                        <FormRow>
+                          <Field
+                            type="password"
+                            name="newPasswordConfirmation"
+                            placeholder=" New password confirmation. . ."
+                            disabled={formik.isSubmitting}
+                          />
+                          <ErrorMessage
+                            component={"div"}
+                            name="passwordConfirmation"
+                          />
+                        </FormRow>
+                        {/* <FormRow>
+                          <Button isOutline isHeading>
+                            Update Password
+                          </Button>
+                        </FormRow> */}
+                        <FormRow>
+                          <Button
+                            isOutline
+                            isFormButton
+                            desabled={formik.isSubmitting}
+                          >
+                            {formik.isSubmitting
+                              ? "Processting . . ."
+                              : "Update Password"}
+                          </Button>
+                        </FormRow>
+                      </Form>
+                    )}
+                  </Formik>
+                </ProfileCard>
+              )}
+            </>
+          </GridSecondary>
+        </Section>
+      )}
+      ;
     </>
   );
 };

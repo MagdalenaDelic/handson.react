@@ -26,10 +26,12 @@ const Header = ({ isSecondary, isActive, setIsSidebarOpened }) => {
           <CustomLink to="/Courses">Courses</CustomLink>
           <CustomLink to="/Profile">Profile</CustomLink>
           <NavButtonLink to="/LogIn">
-            <Button modifiers={["nav"]}>Sign In</Button>
+            <Button isNav>Sign In</Button>
           </NavButtonLink>
           <NavButtonLink to="/Register">
-            <Button modifiers={["nav", "secondary"]}>Registration</Button>
+            <Button isNav isSecondaryButton>
+              Registration
+            </Button>
           </NavButtonLink>
         </Nav>
       </HeaderInner>

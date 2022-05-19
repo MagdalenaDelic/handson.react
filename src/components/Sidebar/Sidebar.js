@@ -16,10 +16,12 @@ const Sidebar = ({ isSidebarOpened, setIsSidebarOpened }) => {
         <CustomLink to="/Courses">Courses</CustomLink>
         <CustomLink to="/Profile">Profile</CustomLink>
         <NavButtonLink to="/">
-          <Button modifiers={["nav"]}>Sign In</Button>
+          <Button isNav>Sign In</Button>
         </NavButtonLink>
         <NavButtonLink to="/">
-          <Button modifiers={["nav", "secondary"]}>Registration</Button>
+          <Button isNav isSecondaryButton>
+            Registration
+          </Button>
         </NavButtonLink>
       </UnorderedList>
     </SidebarWrapper>
