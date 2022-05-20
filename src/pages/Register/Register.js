@@ -16,9 +16,12 @@ import {
   Option,
   ErrorMessage,
   Label,
+  FormSuccessMessage,
 } from "../../lib/style/generalStyles";
+import { registerUser } from "../api/users";
 
 const Register = () => {
+  const [successMessage,setSuccessMessage] = useState(null);
   const [loader, setLoader] = useState(true);
   const [isSidebarOpened, setIsSidebarOpened] = useState(false);
 
@@ -74,15 +77,27 @@ const Register = () => {
                 "Github username is required"
               ),
               zeplinUsername: Yup.string().required(
-                "Zepelin username  is required"
+                "Zeplin username  is required"
               ),
               activeFacultyYear: Yup.string().required(
                 "Active Faculty Year is required"
               ),
             })}
             onSubmit={(values, actions) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
+              const user = {
+                first_name: values.firstName,
+                last_name: values.lastName,
+                email: values.email,
+                password: values.password,
+                github_username: values.githubUsername,
+                zeplin_username: values.zeplinUsername,
+                active_faculty_year:
+                  Number(values.activeFacultyYear) === 0
+                    ? null
+                    : Number(values.activeFacultyYear),
+                is_admin: false,
+              };
+              registerUser(values).then((res) => {
                 actions.setSubmitting(false);
                 actions.resetForm({
                   firstName: "",
@@ -95,11 +110,31 @@ const Register = () => {
                   activeFacultyYear: "",
                   isAdmin: false,
                 });
-              }, 1000);
+                setSuccessMessage({
+                  error: false,
+                  message: "User registartion was successfull",
+                });
+                .catch((err) => {
+                  setSuccessMessage({
+                    error: true,
+                    message: "Error occured, try again",
+                  });
+                });
+
+                setTimeout(() => {
+                  setSuccessMessage(null);
+                });
+              }, 3000);
             }}
           >
             {(formik) => (
               <Form>
+               { successMessage && (
+                <FormRow>
+                  <FormSuccessMessage isError = {successMessage.error}>{successMessage.message}
+                     </FormSuccessMessage>
+                </FormRow>
+                )};
                 <FormRow>
                   <Label>First name </Label>
                   <Field
@@ -171,7 +206,7 @@ const Register = () => {
                   <Field
                     type="text"
                     name="zeplinUsername"
-                    placeholder="Zepelin Username . . ."
+                    placeholder="Zeplin Username . . ."
                     disabled={formik.isSubmitting}
                   />
                   <ErrorMessage component={"div"} name="zeplinUsername" />
