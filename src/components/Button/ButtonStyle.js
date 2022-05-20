@@ -29,7 +29,7 @@ export const Button = styled.button`
 
   ${(props) => props.isOutline && `border: 1px solid ${colors.primary};`}
   ${(props) => props.isHeading && `width: 200px;`}
-  ${(props) => props.isRight && `; margin-left: 1050px`}
+  ${(props) => props.isRight && ` margin-left: 1050px;`}
 
   ${(props) =>
     props.isFormButton &&

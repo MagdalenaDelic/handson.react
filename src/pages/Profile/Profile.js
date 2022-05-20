@@ -45,7 +45,7 @@ const Profile = () => {
       ) : (
         <Section title={"Profile"} isMainSection>
           <Button isOutline isRight onClick={() => setIsToggled(!isToggled)}>
-            Edit
+            {isToggled == true ? "cancel" : "edit"}
           </Button>
 
           <GridSecondary>
@@ -200,17 +200,18 @@ const Profile = () => {
                   <Formik
                     initialValues={{
                       oldPassword: "",
-                      newPassword: "",
-                      newPasswordConfirmation: "",
+                      password: "",
+                      passwordConfirmation: "",
                     }}
                     validationSchema={Yup.object({
                       oldPassword: Yup.string().required(
-                        "Password is required"
+                        "Old password is required"
                       ),
-                      newPassword: Yup.string()
+
+                      password: Yup.string()
                         .min(8, "password must be at least 8 characters long")
                         .required("New password is required"),
-                      newPasswordConfirmation: Yup.string()
+                      passwordConfirmation: Yup.string()
                         .test(
                           "password-match",
                           "Password must match",
@@ -219,16 +220,16 @@ const Profile = () => {
                             return this.parent.password === value;
                           }
                         )
-                        .required("New password confirmation is required"),
+                        .required("Password confirmation is required"),
                     })}
                     onSubmit={(values, actions) => {
                       setTimeout(() => {
-                        alert(JSON.stringify(values, null, 2));
+                        alert("Password updated successfully");
                         actions.setSubmitting(false);
                         actions.resetForm({
                           oldPassword: "",
-                          newPasswordpassword: "",
-                          newPasswordConfirmation: "",
+                          password: "",
+                          passwordConfirmation: "",
                         });
                       }, 1000);
                     }}
@@ -236,19 +237,21 @@ const Profile = () => {
                     {(formik) => (
                       <Form>
                         <FormRow>
+                          <Label> Old password</Label>
                           <Field
                             type="password"
                             name="oldPassword"
-                            placeholder="Old password . . ."
+                            placeholder="old password . . ."
                             disabled={formik.isSubmitting}
                           />
-                          <ErrorMessage component={"div"} name="password" />
+                          <ErrorMessage component={"div"} name="oldPassword" />
                         </FormRow>
 
                         <FormRow>
+                          <Label> New password</Label>
                           <Field
                             type="password"
-                            name="newPassword"
+                            name="password"
                             placeholder="New password . . ."
                             disabled={formik.isSubmitting}
                           />
@@ -256,10 +259,11 @@ const Profile = () => {
                         </FormRow>
 
                         <FormRow>
+                          <Label> Password confirmation</Label>
                           <Field
                             type="password"
-                            name="newPasswordConfirmation"
-                            placeholder=" New password confirmation. . ."
+                            name="passwordConfirmation"
+                            placeholder="Password confirmation. . ."
                             disabled={formik.isSubmitting}
                           />
                           <ErrorMessage
@@ -267,11 +271,7 @@ const Profile = () => {
                             name="passwordConfirmation"
                           />
                         </FormRow>
-                        {/* <FormRow>
-                          <Button isOutline isHeading>
-                            Update Password
-                          </Button>
-                        </FormRow> */}
+
                         <FormRow>
                           <Button
                             isOutline
@@ -280,7 +280,7 @@ const Profile = () => {
                           >
                             {formik.isSubmitting
                               ? "Processting . . ."
-                              : "Update Password"}
+                              : "Update password"}
                           </Button>
                         </FormRow>
                       </Form>
