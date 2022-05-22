@@ -29,3 +29,17 @@ export const logInUser = (user) => {
     return res.json();
   });
 };
+
+export const getAllUsers = (accessToken) => {
+  return fetch(`${apiOrigin}/users`, {
+    headers: {
+      Autorization: `Bearer ${accessToken}`,
+    },
+  }).then((res) => {
+    if (!res.ok) {
+      throw res;
+    }
+
+    return res.json();
+  });
+};
