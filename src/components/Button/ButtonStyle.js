@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../lib/style/theme";
+import { colors, brakepoints} from "../../lib/style/theme";
 
 export const Button = styled.button`
   border: none;
@@ -29,7 +29,9 @@ export const Button = styled.button`
 
   ${(props) => props.isOutline && `border: 1px solid ${colors.primary};`}
   ${(props) => props.isHeading && `width: 200px;`}
-  ${(props) => props.isRight && ` margin-left: 1050px;`}
+  ${(props) => props.isRight && `
+    
+  }`}
 
   ${(props) =>
     props.isFormButton &&

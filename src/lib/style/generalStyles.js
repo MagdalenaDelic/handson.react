@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { brakepoints, colors, fonts } from "../style/theme";
 import {
   Form as FormFormik,
@@ -127,7 +127,7 @@ export const Instructions = styled.p``;
 export const FormSuccessMessage = styled.p`
   padding: 12px;
   font-size: 14px;
-  color: #27ae60;
+  color: ${colors.SuccessMessage};
   text-align: center;
   background: rgba(111, 207, 151, 0.2);
   border-radius: 8px;
@@ -136,7 +136,19 @@ export const FormSuccessMessage = styled.p`
   ${(props) =>
     props.isError &&
     `
-        color: #eb5757;
-        background: rgba(235,87,87,0.2);
+        color: ${colors.ErrorSuccessMessage};
+        background: ${colors.ErrorBg};
     `}
 `;
+export const Div1 = styled.div`
+
+margin-bottom:30px ;
+margin-top:-30px ;
+
+@media (${brakepoints.tabletSmall}) {
+  margin-top: -100px;
+  display: flex;
+  flex-direction: column;
+  align-items:end;
+  }
+`

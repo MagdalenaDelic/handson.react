@@ -11,6 +11,10 @@ export const colors = {
   bgSecondary: "#f6fafb",
   textPrimary: "#333333",
   textSecondary: "#696969",
+  SuccessMessage:"#27ae60",
+  ErrorSuccessMessage:"#eb5757",
+  ErrorBg:"rgba(235,87,87,0.2)",
+
 };
 
 export const brakepoints = {

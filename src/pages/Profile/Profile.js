@@ -20,6 +20,7 @@ import {
   ProfileCard,
   ProfileCardParagraph,
   ProfileCardTitle,
+  Div1
 } from "../../lib/style/generalStyles";
 
 const Profile = () => {
@@ -44,9 +45,11 @@ const Profile = () => {
         <Loader></Loader>
       ) : (
         <Section title={"Profile"} isMainSection>
-          <Button isOutline isRight onClick={() => setIsToggled(!isToggled)}>
-            {isToggled == true ? "cancel" : "edit"}
-          </Button>
+          <Div1>
+            <Button isOutline isRight onClick={() => setIsToggled(!isToggled)}>
+              {isToggled == true ? "cancel" : "edit"}
+            </Button>
+          </Div1>
 
           <GridSecondary>
             <Formik
